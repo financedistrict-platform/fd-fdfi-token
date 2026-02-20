@@ -91,7 +91,8 @@ describe("FDFIToken", () => {
         const spender = await spenderSigner.getAddress();
         const value = ethers.parseUnits("12345", 18);
         const nonce = await token.nonces(owner);
-        const deadline = Math.floor(Date.now() / 1000) + 3600;
+        const latestBlock = await ethers.provider.getBlock('latest');
+        const deadline = latestBlock!.timestamp + 3600;
 
         const domain = {
             name: "FDFI Token",
@@ -311,7 +312,8 @@ describe("FDFIToken", () => {
         // After a permit, nonce should increment
         const spender = await user1.getAddress();
         const value = ethers.parseUnits("100", 18);
-        const deadline = Math.floor(Date.now() / 1000) + 3600;
+        const latestBlock = await ethers.provider.getBlock('latest');
+        const deadline = latestBlock!.timestamp + 3600;
         
         const domain = {
             name: "FDFI Token",
