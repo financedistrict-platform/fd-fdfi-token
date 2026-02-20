@@ -4,15 +4,15 @@ async function main() {
     const [deployer] = await ethers.getSigners();
     console.log("Deployer:", deployer.address);
 
-    const FDFIToken = await ethers.getContractFactory("FDFIToken");
+    const SEXYToken = await ethers.getContractFactory("SEXYToken");
     const proxy = await upgrades.deployProxy(
-        FDFIToken,
+        SEXYToken,
         [deployer.address],
         { initializer: "initialize" }
     );
     await proxy.waitForDeployment();
 
-    console.log("FDFIToken proxy deployed at:", await proxy.getAddress());
+    console.log("SEXYToken proxy deployed at:", await proxy.getAddress());
 }
 
 main().catch((e) => {

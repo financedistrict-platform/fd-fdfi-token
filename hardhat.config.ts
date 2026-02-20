@@ -16,13 +16,56 @@ const config: HardhatUserConfig = {
     },
     networks: {
         localhost: {},
+        // Testnet networks
         sepolia: {
-            url: process.env.SEPOLIA_RPC || "",
+            url: process.env.TESTNET_SEPOLIA_RPC_URL || "",
+            accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
+        },
+        baseSepolia: {
+            url: process.env.TESTNET_BASE_SEPOLIA_RPC_URL || "",
+            accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
+        },
+        bscTestnet: {
+            url: process.env.TESTNET_BSC_TESTNET_RPC_URL || "",
+            accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
+        },
+        arbitrumSepolia: {
+            url: process.env.TESTNET_ARBITRUM_SEPOLIA_RPC_URL || "",
+            accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
+        },
+        // Mainnet networks (for future production deployment)
+        mainnet: {
+            url: process.env.MAINNET_ETHEREUM_RPC_URL || "",
+            accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
+        },
+        base: {
+            url: process.env.MAINNET_BASE_RPC_URL || "",
+            accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
+        },
+        bsc: {
+            url: process.env.MAINNET_BSC_RPC_URL || "",
+            accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
+        },
+        arbitrum: {
+            url: process.env.MAINNET_ARBITRUM_RPC_URL || "",
             accounts: PRIVATE_KEY ? [`0x${PRIVATE_KEY}`] : []
         }
     },
     etherscan: {
-        apiKey: process.env.ETHERSCAN_API_KEY || ""
+        apiKey: process.env.ETHERSCAN_API_KEY || "",
+        customChains: [
+            {
+                network: "bscTestnet",
+                chainId: 97,
+                urls: {
+                    apiURL: "https://api-testnet.bscscan.com/api",
+                    browserURL: "https://testnet.bscscan.com"
+                }
+            }
+        ]
+    },
+    sourcify: {
+        enabled: false
     }
 };
 

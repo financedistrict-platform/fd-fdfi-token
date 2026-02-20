@@ -4,7 +4,7 @@ FDFI is an upgradeable ERC20 governance token with a maximum supply cap of 2 bil
 
 ## Contracts
 
-### FDFIToken.sol
+### SEXYToken.sol (contracts/SEXYToken.sol)
 Main token contract implementing:
 - ERC20 standard (transfer, approve, allowance)
 - ERC20Burnable (holders can burn their tokens)
@@ -39,10 +39,10 @@ cp .env.example .env
 
 ### Environment Variables
 ```
-PRIVATE_KEY=              # Deployer private key
+PRIVATE_KEY=0x6a99235401205f50b949ced2b1123427fdde42efb039e2dabe87841b2936f7af  # Deployer private key
 SEPOLIA_RPC=              # Ethereum Sepolia RPC URL
 BSC_TESTNET_RPC=          # BSC Testnet RPC URL
-FDFI_TOKEN_ADDRESS=       # Deployed token address
+FDFI_TOKEN_ADDRESS=0x67761525322D5d2c489E75E7E46E295E64f2F082  # Deployed token address (Sepolia)
 ETHERSCAN_API_KEY=        # For contract verification
 BSCSCAN_API_KEY=          # For contract verification
 SEPOLIA_ENDPOINT=         # LayerZero Sepolia endpoint

@@ -30,12 +30,12 @@ describe("FDFIAdapter - Rate Limiter Enforcement", function () {
         mockEndpoint = await mockEndpointContract.getAddress();
 
         // Deploy main FDFI token using upgrades plugin
-        const FDFIFactory = await ethers.getContractFactory("FDFIToken");
-        const proxy = await upgrades.deployProxy(FDFIFactory, [deployerAddr], {
+        const SEXYFactory = await ethers.getContractFactory("SEXYToken");
+        const proxy = await upgrades.deployProxy(SEXYFactory, [deployerAddr], {
             initializer: "initialize"
         });
         await proxy.waitForDeployment();
-        mainToken = FDFIFactory.attach(await proxy.getAddress()) as any;
+        mainToken = SEXYFactory.attach(await proxy.getAddress()) as any;
 
         // Mint tokens and enable transfers
         await mainToken.mintTo(deployerAddr, ethers.parseUnits("1000000", 18));

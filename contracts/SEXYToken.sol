@@ -11,10 +11,10 @@ import {ERC20VotesUpgradeable} from "@openzeppelin/contracts-upgradeable/token/E
 import {NoncesUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/NoncesUpgradeable.sol";
 
 /**
- * @title FDFIToken
+ * @title SEXYToken
  * @notice A governance token with minting, burning, voting, upgradeability, and transfer gating.
  */
-contract FDFIToken is
+contract SEXYToken is
     Initializable,
     ERC20Upgradeable,
     ERC20BurnableUpgradeable,
@@ -23,9 +23,9 @@ contract FDFIToken is
     Ownable2StepUpgradeable,
     UUPSUpgradeable
 {
-    // Fixed token metadata & capped total supply (2B FDFI, 18 decimals)
-    string internal constant _NAME = "FDFI Token";
-    string internal constant _SYMBOL = "FDFI";
+    // Fixed token metadata & capped total supply (2B SEXY, 18 decimals)
+    string internal constant _NAME = "SEXY";
+    string internal constant _SYMBOL = "SEXY";
     uint256 public constant MAX_SUPPLY = 2_000_000_000e18; // 2,000,000,000 * 10^18
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {

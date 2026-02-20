@@ -7,7 +7,7 @@ coverage.json
 coverage-report/
 
 # Typechain / generated types
- typechain-types/
+typechain-types/
 
 # Env / secrets
 .env

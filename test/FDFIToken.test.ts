@@ -3,10 +3,10 @@ import { ethers, upgrades } from "hardhat";
 import { Signer } from "ethers";
 
 async function deployProxy(owner: string) {
-    const FDFI = await ethers.getContractFactory("FDFIToken");
-    const proxy = await upgrades.deployProxy(FDFI, [owner], { initializer: "initialize" });
+    const SEXY = await ethers.getContractFactory("SEXYToken");
+    const proxy = await upgrades.deployProxy(SEXY, [owner], { initializer: "initialize" });
     await proxy.waitForDeployment();
-    return await ethers.getContractAt("FDFIToken", await proxy.getAddress());
+    return await ethers.getContractAt("SEXYToken", await proxy.getAddress());
 }
 
 describe("FDFIToken", () => {
@@ -91,10 +91,11 @@ describe("FDFIToken", () => {
         const spender = await spenderSigner.getAddress();
         const value = ethers.parseUnits("12345", 18);
         const nonce = await token.nonces(owner);
-        const deadline = Math.floor(Date.now() / 1000) + 3600;
+        const latestBlock = await ethers.provider.getBlock('latest');
+        const deadline = latestBlock!.timestamp + 3600;
 
         const domain = {
-            name: "FDFI Token",
+            name: "SEXY",
             version: "1",
             chainId: (await ethers.provider.getNetwork()).chainId,
             verifyingContract: await token.getAddress()
@@ -180,15 +181,15 @@ describe("FDFIToken", () => {
         // Note: Skipping this test due to OpenZeppelin upgrades plugin validation strictness
         // The upgrade mechanism works correctly in practice, but the validator requires
         // initializer functions even for simple mock contracts that don't add new state
-        const FDFI = await ethers.getContractFactory("FDFIToken");
-        const proxy = await upgrades.deployProxy(FDFI, [await deployer.getAddress()], { initializer: "initialize" });
+        const SEXY = await ethers.getContractFactory("SEXYToken");
+        const proxy = await upgrades.deployProxy(SEXY, [await deployer.getAddress()], { initializer: "initialize" });
         const proxyAddr = await proxy.getAddress();
-        const token = await ethers.getContractAt("FDFIToken", proxyAddr);
+        const token = await ethers.getContractAt("SEXYToken", proxyAddr);
         await token.mintTo(await deployer.getAddress(), ethers.parseUnits("424242", 18));
         await token.enableTransfers();
         const balanceBefore = await token.balanceOf(await deployer.getAddress());
         // Attempt non-owner upgrade (connect user1)
-        const V2 = await ethers.getContractFactory("FDFITokenV2");
+        const V2 = await ethers.getContractFactory("SEXYTokenV2");
         // Owner upgrade - force upgrade for test mock that doesn't need new initializer
         const upgraded = await upgrades.upgradeProxy(proxyAddr, V2, {
             unsafeSkipStorageCheck: true,
@@ -311,10 +312,11 @@ describe("FDFIToken", () => {
         // After a permit, nonce should increment
         const spender = await user1.getAddress();
         const value = ethers.parseUnits("100", 18);
-        const deadline = Math.floor(Date.now() / 1000) + 3600;
+        const latestBlock = await ethers.provider.getBlock('latest');
+        const deadline = latestBlock!.timestamp + 3600;
         
         const domain = {
-            name: "FDFI Token",
+            name: "SEXY",
             version: "1",
             chainId: (await ethers.provider.getNetwork()).chainId,
             verifyingContract: await token.getAddress()

@@ -5,8 +5,8 @@ async function main() {
     const proxyAddress = process.env.PROXY_ADDRESS;
     if (!proxyAddress) throw new Error("PROXY_ADDRESS env var required");
 
-    const FDFIToken = await ethers.getContractFactory("FDFIToken");
-    const upgraded = await upgrades.upgradeProxy(proxyAddress, FDFIToken);
+    const SEXYToken = await ethers.getContractFactory("SEXYToken");
+    const upgraded = await upgrades.upgradeProxy(proxyAddress, SEXYToken);
     console.log("Upgraded implementation, proxy still at:", await upgraded.getAddress());
 }
 

@@ -27,7 +27,7 @@ npm run test
 
 ## Common Patterns
 - Deployment helper uses `upgrades.deployProxy` with `initialize(owner)`.
-- Typed data for permit uses domain fields: `{ name: "FDFI Token", version: "1", chainId, verifyingContract }`.
+- Typed data for permit uses domain fields: `{ name: "SEXY", version: "1", chainId, verifyingContract }`.
 - Event assertions use Chai's `to.emit(...).withArgs(...)` where practical.
 
 ## Extending Coverage Ideas

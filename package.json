@@ -7,9 +7,13 @@
         "clean": "hardhat clean",
         "test": "hardhat test",
         "deploy": "hardhat run scripts/deploy.ts --network localhost",
-        "deploy:network": "hardhat run scripts/deploy.ts --network $NETWORK",
+        "deploy:token": "hardhat run scripts/deploy.ts --network $NETWORK",
+        "deploy:verify": "hardhat run scripts/deploy-and-verify.ts --network $NETWORK",
+        "deploy:adapter": "hardhat run scripts/deploy-adapter.ts --network $NETWORK",
+        "deploy:oft": "hardhat run scripts/deploy-oft.ts --network $NETWORK",
+        "configure:peers": "hardhat run scripts/configure-peers.ts --network $NETWORK",
         "upgrade": "hardhat run scripts/upgrade.ts --network $NETWORK",
-        "verify": "hardhat run scripts/verify.ts --network $NETWORK"
+        "verify": "hardhat run scripts/verify-etherscan.ts --network $NETWORK"
     },
     "devDependencies": {
         "@layerzerolabs/lz-evm-protocol-v2": "^3.0.140",

@@ -23,12 +23,12 @@ describe("FDFI OFT and Adapter Basic Coverage", function () {
         mockEndpoint = await mockEndpointContract.getAddress();
 
         // Deploy main token with upgrades plugin
-        const FDFIFactory = await ethers.getContractFactory("FDFIToken");
-        const proxy = await upgrades.deployProxy(FDFIFactory, [deployerAddr], {
+        const SEXYFactory = await ethers.getContractFactory("SEXYToken");
+        const proxy = await upgrades.deployProxy(SEXYFactory, [deployerAddr], {
             initializer: "initialize"
         });
         await proxy.waitForDeployment();
-        mainToken = await ethers.getContractAt("FDFIToken", await proxy.getAddress());
+        mainToken = await ethers.getContractAt("SEXYToken", await proxy.getAddress());
 
         // Mint some tokens and enable transfers
         await mainToken.mintTo(deployerAddr, ethers.parseUnits("1000000", 18));
@@ -162,8 +162,8 @@ describe("FDFI OFT and Adapter Basic Coverage", function () {
             expect(await adapter.token()).to.equal(await mainToken.getAddress());
             
             // Verify token has the expected properties
-            expect(await mainToken.name()).to.equal("FDFI Token");
-            expect(await mainToken.symbol()).to.equal("FDFI");
+            expect(await mainToken.name()).to.equal("SEXY");
+            expect(await mainToken.symbol()).to.equal("SEXY");
             expect(await mainToken.decimals()).to.equal(18);
         });
     });

@@ -10,12 +10,12 @@ async function main() {
         throw new Error("Please set FDFI_TOKEN_ADDRESS in your .env file");
     }
 
-    console.log("🧪 Testing FDFI Token on Sepolia...\n");
+    console.log("🧪 Testing SEXY Token on Sepolia...\n");
     
     const [owner] = await ethers.getSigners();
     console.log("Owner address:", owner.address);
     
-    const token = await ethers.getContractAt("FDFIToken", DEPLOYED_ADDRESS);
+    const token = await ethers.getContractAt("SEXYToken", DEPLOYED_ADDRESS);
     
     console.log("\n📊 Token Info:");
     console.log("  Name:", await token.name());
