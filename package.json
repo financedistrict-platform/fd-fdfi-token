@@ -39,5 +39,16 @@
         "ts-node": "^10.9.2",
         "typechain": "^8.3.2",
         "typescript": "^5.4.5"
+    },
+    "overrides": {
+        "mocha": {
+            "serialize-javascript": "^7.0.5"
+        },
+        "@sentry/node": {
+            "cookie": "^0.7.2"
+        },
+        "solc": {
+            "tmp": "^0.2.6"
+        }
     }
 }
